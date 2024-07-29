@@ -1,5 +1,6 @@
 const express = require('express');
-const { Item } = require('./models');
+const { Item } = require('./models/models');
+const itemTypesRoutes = require('./routes/itemTypesRoute')
 const app = express();
 const port = 3000;
 
@@ -8,6 +9,7 @@ app.use(express.json());
 
 // Routes
 // Get all items
+/*
 app.get('/api/items', async (req, res) => {
     const items = await Item.findAll();
     res.json(items);
@@ -58,8 +60,11 @@ app.delete('/api/items/:id', async (req, res) => {
         res.status(404).json({ message: 'Item not found' });
     }
 });
-
+*/
 // Start the server
+
+app.use('/api', itemTypesRoutes.router);
+
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
