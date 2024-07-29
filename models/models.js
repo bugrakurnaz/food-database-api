@@ -11,6 +11,10 @@ const ItemType = sequelize.define('ItemType', {
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true
     },
+    name: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     unit: {
         type: DataTypes.STRING,
         allowNull: false

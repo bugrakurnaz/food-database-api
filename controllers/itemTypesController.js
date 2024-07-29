@@ -14,3 +14,36 @@ exports.getItemTypeById = async (req, res) => {
         res.status(404).json({ message: 'ItemType not found' });
     }
 }
+
+exports.createItemType = async (req, res) => {
+    try {
+        const newItemType = await ItemType.create({ name: req.body.name, unit: req.body.unit});
+        res.status(201).json(newItemType);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+}
+
+exports.updateItemType = async (req, res) => {
+    const id = parseInt(req.params.id);
+    const itemType = await ItemType.findByPk(id);
+    if (itemType) {
+        itemType.name = req.body.name;
+        itemType.unit = req.body.unit;
+        await itemType.save();
+        res.json(itemType);
+    } else {
+        res.status(404).json({ message: 'ItemType not found' });
+    }
+}
+
+exports.deleteItemType = async (req, res) => {
+    const id = parseInt(req.params.Id);
+    const itemType = await ItemType.findByPk(id);
+    if (item) {
+        await item.destroy();
+        res.status(204).send();
+    } else {
+        res.status(404).json({ message: 'ItemType not found' });
+    }
+}
