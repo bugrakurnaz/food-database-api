@@ -1,9 +1,9 @@
-const {ItemType} = require('../models/models');
+const { ItemType } = require('../models/models');
 
 exports.getAllItemTypes = async (req, res) => {
-     const itemTypes = await ItemType.findAll();
-     return res.json(itemTypes);
-}
+    const itemTypes = await ItemType.findAll();
+    return res.json(itemTypes);
+};
 
 exports.getItemTypeById = async (req, res) => {
     const id = req.params.id;
@@ -13,19 +13,19 @@ exports.getItemTypeById = async (req, res) => {
     } else {
         res.status(404).json({ message: 'ItemType not found' });
     }
-}
+};
 
 exports.createItemType = async (req, res) => {
     try {
-        const newItemType = await ItemType.create({ name: req.body.name, unit: req.body.unit});
+        const newItemType = await ItemType.create({ name: req.body.name, unit: req.body.unit });
         res.status(201).json(newItemType);
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
-}
+};
 
 exports.updateItemType = async (req, res) => {
-    const id = parseInt(req.params.id);
+    const id = req.params.id;
     const itemType = await ItemType.findByPk(id);
     if (itemType) {
         itemType.name = req.body.name;
@@ -35,15 +35,15 @@ exports.updateItemType = async (req, res) => {
     } else {
         res.status(404).json({ message: 'ItemType not found' });
     }
-}
+};
 
 exports.deleteItemType = async (req, res) => {
-    const id = parseInt(req.params.Id);
+    const id = req.params.id; 
     const itemType = await ItemType.findByPk(id);
-    if (item) {
-        await item.destroy();
+    if (itemType) { 
+        await itemType.destroy();
         res.status(204).send();
     } else {
         res.status(404).json({ message: 'ItemType not found' });
     }
-}
+};
