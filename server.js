@@ -1,6 +1,6 @@
 const express = require('express');
-const { Item } = require('./models/models');
-const itemTypesRoutes = require('./routes/itemTypesRoute')
+const { ItemType, StoredItem } = require('./models/models');
+const routes = require('./routes/routes')
 const cors = require('cors')
 const app = express();
 const port = 8079;
@@ -14,7 +14,7 @@ app.use(cors({
 // Middleware to parse JSON bodies
 app.use(express.json());
 
-app.use('/api', itemTypesRoutes.router);
+app.use('/api', routes.router);
 
 
 app.listen(port, () => {

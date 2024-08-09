@@ -53,6 +53,10 @@ const StoredItem = sequelize.define('StoredItem', {
         type: DataTypes.DOUBLE,
         allowNull: false
     },
+    expirationDate: {
+        type: DataTypes.DATE,
+        allowNull: false
+    },
     itemType: {
         type: DataTypes.UUID,
         allowNull: false,
